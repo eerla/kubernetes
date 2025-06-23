@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-hello-deployment
+  labels:
+    app: flask-hello
+spec:
+  replicas: 2  # Number of pods
+  selector:
+    matchLabels:
+      app: flask-hello
+  template:
+    metadata:
+      labels:
+        app: flask-hello
+    spec:
+      containers:
+      - name: flask-hello
+        image: flask-hello:latest  # Replace with your Docker Hub image if pushing
+        ports:
+        - containerPort: 5000
+        env:
+        - name: GREETING
+          valueFrom:
+            configMapKeyRef:
+              name: flask-hello-config
+              key: GREETING 

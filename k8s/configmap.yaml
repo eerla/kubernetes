@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flask-hello-config
+
+data:
+  GREETING: "Hello from ConfigMap!" 
